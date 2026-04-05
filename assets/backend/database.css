@@ -1,0 +1,335 @@
+/* Database Management Styles */
+
+.admin-mang-container {
+    width: 96%;
+    max-width: 1200px;
+    margin: 1rem auto;
+    font-family: var(--admin-mang-font);
+}
+
+.admin-mang-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 35px;
+    background: var(--admin-mang-white);
+    padding: 24px 30px;
+    border-radius: 20px;
+    box-shadow: var(--admin-mang-card-shadow);
+    border: 1px solid var(--admin-mang-border-light);
+}
+
+.admin-mang-header-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--admin-mang-light-red-bg);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--admin-mang-primary);
+    flex-shrink: 0;
+}
+
+.admin-mang-header-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.admin-mang-header-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--admin-mang-secondary);
+    margin: 0 0 4px 0;
+    letter-spacing: -0.8px;
+}
+
+.admin-mang-header-subtitle {
+    color: var(--admin-mang-grey-light-text);
+    font-size: 15px;
+    margin: 0;
+}
+
+.admin-mang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* Card Styles */
+.admin-mang-card {
+    background: var(--admin-mang-white);
+    border-radius: 20px;
+    box-shadow: var(--admin-mang-card-shadow);
+    border: 1px solid var(--admin-mang-border-light);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-mang-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--admin-mang-card-shadow);
+}
+
+.admin-mang-card-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--admin-mang-border-default);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.admin-mang-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--admin-mang-secondary);
+    margin: 0;
+    letter-spacing: -0.4px;
+}
+
+.admin-mang-card-body {
+    padding: 25px;
+}
+
+.admin-mang-no-padding {
+    padding: 0 !important;
+}
+
+/* Status Badges */
+.admin-mang-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.admin-mang-status-exists {
+    background: var(--admin-mang-light-green-bg);
+    color: var(--admin-mang-success);
+}
+
+.admin-mang-status-missing {
+    background: var(--admin-mang-light-red-bg);
+    color: var(--admin-mang-error);
+}
+
+.admin-mang-status-icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* Info List */
+.admin-mang-status-info {
+    margin-bottom: 30px;
+}
+
+.admin-mang-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--admin-mang-border-default);
+}
+
+.admin-mang-info-item:last-child {
+    border-bottom: none;
+}
+
+.admin-mang-info-label {
+    color: var(--admin-mang-grey-light-text);
+    font-weight: 500;
+}
+
+.admin-mang-info-value {
+    color: var(--admin-mang-secondary);
+    font-weight: 700;
+}
+
+/* Buttons */
+.admin-mang-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-mang-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+    font-family: inherit;
+}
+
+.admin-mang-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.admin-mang-btn-primary {
+    background: var(--admin-mang-primary);
+    color: var(--admin-mang-white);
+    box-shadow: var(--admin-mang-card-shadow);
+}
+
+.admin-mang-btn-primary:hover {
+    background: var(--admin-mang-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--admin-mang-card-shadow);
+}
+
+.admin-mang-btn-secondary {
+    background: var(--admin-mang-white);
+    color: var(--admin-mang-secondary);
+    border: 1.5px solid var(--admin-mang-border-default);
+}
+
+.admin-mang-btn-secondary:hover {
+    background: var(--admin-mang-bg);
+    border-color: var(--admin-mang-grey-light-text);
+}
+
+/* Data Table Styles */
+.admin-mang-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-mang-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.admin-mang-table th {
+    background: var(--admin-mang-bg);
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--admin-mang-grey-light-text);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    border-bottom: 1px solid var(--admin-mang-border-default);
+}
+
+.admin-mang-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--admin-mang-border-light);
+    color: var(--admin-mang-secondary);
+}
+
+.admin-mang-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-mang-table tr:hover td {
+    background: var(--admin-mang-light-red-bg);
+}
+
+.admin-mang-table code {
+    background: var(--admin-mang-light-yellow-bg);
+    color: var(--admin-mang-warning);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.admin-mang-empty-row td {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--admin-mang-grey-light-text);
+}
+
+.admin-mang-badge-row {
+    background: var(--admin-mang-light-green-bg);
+    color: var(--admin-mang-success);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Loading Spinner Overlay */
+.admin-mang-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--admin-mang-overlay-bg);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.admin-mang-spinner {
+    width: 35px;
+    height: 35px;
+    border: 4px solid var(--admin-mang-light-red-bg);
+    border-top: 4px solid var(--admin-mang-primary);
+    border-radius: 50%;
+    animation: admin-mang-spin 1s linear infinite;
+}
+
+@keyframes admin-mang-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+    .admin-mang-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .admin-mang-container {
+        padding: 15px 0px;
+        margin: 0;
+    }
+
+    .admin-mang-header {
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .admin-mang-header-title {
+        font-size: 22px;
+    }
+
+    .admin-mang-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .admin-mang-table th {
+        padding: 10px;
+    }
+
+    .admin-mang-table td {
+        padding: 10px;
+    }
+}

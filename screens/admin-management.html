@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Dashboard Settings | Admin UI</title>
+  <style>
+    :root {
+      --am-d-primary: #F15E74;
+      --am-d-secondary: #2C3E50;
+      --am-d-accent: #2563eb;
+      --am-d-bg: #FAFAFA;
+      --am-d-text: #000000;
+      --am-d-success: #16a34a;
+      --am-d-warning: #f59e0b;
+      --am-d-error: #ea0124;
+      --am-d-white: #ffffff;
+      --am-d-border-light: #e9eef3;
+      --am-d-border-default: #e2e8f0;
+      --am-d-grey-light-text: #5a6e7c;
+      --am-d-light-yellow-bg: #fff2dc;
+      --am-d-light-red-bg: #ffe6ea;
+      --am-d-light-green-bg: #d5ffe5;
+    }
+
+    /* ---------- GLOBAL RESET & BASE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--am-d-bg);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    /* main white card container */
+    .am-dashboard-card {
+      max-width: 1400px;
+      width: 100%;
+      background: var(--am-d-white);
+      border-radius: 24px;
+      border: solid var(--am-d-primary);
+      border-width: 6px 0 0 0;
+      padding: 2.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+
+    /* Top Heading */
+    .am-dashboard-heading {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: var(--am-d-secondary);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .am-dashboard-heading::before {
+      content: '';
+      width: 6px;
+      height: 32px;
+      background: var(--am-d-primary);
+      border-radius: 3px;
+    }
+
+    /* ---------- TABS NAVIGATION ---------- */
+    .am-tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      background: var(--am-d-bg);
+      padding: 6px;
+      border-radius: 16px;
+    }
+
+    .am-tab-btn {
+      background: transparent;
+      border: none;
+      padding: 0.875rem 1.75rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: var(--am-d-grey-light-text);
+      cursor: pointer;
+      border-radius: 12px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .am-tab-btn:hover {
+      color: var(--am-d-secondary);
+      background: var(--am-d-light-red-bg);
+    }
+
+    /* active tab style */
+    .am-tab-btn.am-active {
+      color: var(--am-d-white);
+      background: var(--am-d-primary);
+    }
+
+    /* ---------- TAB CONTENT AREA ---------- */
+    .am-tab-content {
+      display: none;
+      animation: amFadeIn 0.3s ease-out;
+    }
+
+    .am-tab-content.am-active-content {
+      display: block;
+    }
+
+    @keyframes amFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* form row (flex row layout: label + field) */
+    .am-form-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--am-d-border-light);
+    }
+
+    .am-form-row:last-child {
+      border-bottom: none;
+    }
+
+    .am-form-row label {
+      flex: 0 0 140px;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--am-d-secondary);
+    }
+
+    /* right side wrapper (select / input) */
+    .am-field-wrapper {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    select,
+    input[type="text"] {
+      width: 100%;
+      padding: 0.875rem 1.25rem;
+      font-size: 0.9375rem;
+      font-family: inherit;
+      background: var(--am-d-white);
+      border: 2px solid var(--am-d-border-default);
+      border-radius: 12px;
+      color: var(--am-d-secondary);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235a6e7c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 16px;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--am-d-primary);
+    }
+
+    input[type="text"]::placeholder {
+      color: var(--am-d-grey-light-text);
+    }
+
+    /* action area: save button */
+    .am-action-area {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 1.5rem;
+    }
+
+    .am-save-btn {
+      background: var(--am-d-primary);
+      color: var(--am-d-white);
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .am-save-btn:hover {
+      background: var(--am-d-secondary);
+    }
+
+    .am-save-btn:active {
+      transform: translateY(0);
+    }
+
+    /* responsiveness: on smaller screens */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+
+      .am-dashboard-card {
+        padding: 1.5rem;
+        border-radius: 20px;
+      }
+
+      .am-dashboard-heading {
+        font-size: 1.375rem;
+      }
+
+     
+
+
+
+      .am-tab-btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.875rem 1rem;
+      }
+
+      .am-form-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .am-form-row label {
+        flex: auto;
+        width: 100%;
+      }
+
+      .am-field-wrapper {
+        width: 100%;
+      }
+
+      .am-action-area {
+        justify-content: center;
+      }
+
+      .am-save-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* tablet adjustments */
+    @media (min-width: 641px) and (max-width: 900px) {
+      .am-dashboard-card {
+        padding: 2rem;
+      }
+
+      .am-form-row {
+        gap: 1rem;
+      }
+
+      .am-form-row label {
+        flex: 0 0 120px;
+      }
+    }
+
+    /* additional polish */
+    .am-tab-content .am-form-row:first-child {
+      padding-top: 0;
+    }
+
+    select,
+    input {
+      background-color: var(--am-d-white);
+    }
+
+    .am-field-wrapper {
+      display: block;
+    }
+
+    /* select option styling */
+    option {
+      padding: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="am-dashboard-card">
+    <!-- Top Heading -->
+    <h1 class="am-dashboard-heading">Dashboard Settings</h1>
+
+    <!-- Tab Navigation -->
+    <div class="am-tabs-nav">
+      <button class="am-tab-btn am-active" data-tab="general">General</button>
+    </div>
+
+    <!-- TAB 1 CONTENT: Select Page -->
+    <div id="am-selectPageContent" class="am-tab-content am-active-content">
+      <div class="am-form-row">
+        <label for="am-pageDropdown">My Profile</label>
+        <div class="am-field-wrapper">
+          <select id="am-pageDropdown">
+            <option value="Dashboard Overview">Dashboard Overview</option>
+            <option value="Analytics Insights">Analytics Insights</option>
+            <option value="User Management">User Management</option>
+            <option value="Reports & Export">Reports & Export</option>
+            <option value="System Health">System Health</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="am-selectPageContent" class="am-tab-content am-active-content">
+      <div class="am-form-row">
+        <label for="am-pageDropdown">My Listings</label>
+        <div class="am-field-wrapper">
+          <select id="am-pageDropdown">
+            <option value="Dashboard Overview">Dashboard Overview</option>
+            <option value="Analytics Insights">Analytics Insights</option>
+            <option value="User Management">User Management</option>
+            <option value="Reports & Export">Reports & Export</option>
+            <option value="System Health">System Health</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="am-selectPageContent" class="am-tab-content am-active-content">
+      <div class="am-form-row">
+        <label for="am-pageDropdown">My Bookings</label>
+        <div class="am-field-wrapper">
+          <select id="am-pageDropdown">
+            <option value="Dashboard Overview">Dashboard Overview</option>
+            <option value="Analytics Insights">Analytics Insights</option>
+            <option value="User Management">User Management</option>
+            <option value="Reports & Export">Reports & Export</option>
+            <option value="System Health">System Health</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="am-selectPageContent" class="am-tab-content am-active-content">
+      <div class="am-form-row">
+        <label for="am-pageDropdown">Add New Listing</label>
+        <div class="am-field-wrapper">
+          <select id="am-pageDropdown">
+            <option value="Dashboard Overview">Dashboard Overview</option>
+            <option value="Analytics Insights">Analytics Insights</option>
+            <option value="User Management">User Management</option>
+            <option value="Reports & Export">Reports & Export</option>
+            <option value="System Health">System Health</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="am-selectPageContent" class="am-tab-content am-active-content">
+      <div class="am-form-row">
+        <label for="am-pageDropdown">Archieve Listing</label>
+        <div class="am-field-wrapper">
+          <select id="am-pageDropdown">
+            <option value="Dashboard Overview">Dashboard Overview</option>
+            <option value="Analytics Insights">Analytics Insights</option>
+            <option value="User Management">User Management</option>
+            <option value="Reports & Export">Reports & Export</option>
+            <option value="System Health">System Health</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div id="am-selectPageContent" class="am-tab-content am-active-content">
+      <div class="am-form-row">
+        <label for="am-pageDropdown">Single Listing View</label>
+        <div class="am-field-wrapper">
+          <select id="am-pageDropdown">
+            <option value="Dashboard Overview">Dashboard Overview</option>
+            <option value="Analytics Insights">Analytics Insights</option>
+            <option value="User Management">User Management</option>
+            <option value="Reports & Export">Reports & Export</option>
+            <option value="System Health">System Health</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2 CONTENT: General -->
+    <div id="am-generalContent" class="am-tab-content">
+      <div class="am-form-row">
+        <label for="am-logoutField">Logout:</label>
+        <div class="am-field-wrapper">
+          <input type="text" id="am-logoutField" placeholder="e.g., reason, session note, or value" autocomplete="off">
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Area -->
+    <div class="am-action-area">
+      <button class="am-save-btn" id="am-saveSettingsBtn">Save Changes</button>
+    </div>
+  </div>
+
+  
+</body>
+
+</html>

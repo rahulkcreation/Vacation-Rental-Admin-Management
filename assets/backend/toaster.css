@@ -1,0 +1,125 @@
+/* Toaster Styles */
+.admin-mang-toaster {
+    position: fixed;
+    top: 40px;
+    right: 20px;
+    background-color: var(--admin-mang-white);
+    border-radius: 12px;
+    box-shadow: var(--admin-mang-card-shadow);
+    padding: 16px 20px;
+    min-width: 320px;
+    max-width: 450px;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid var(--admin-mang-border-default);
+    animation: adminMangSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes adminMangSlideIn {
+    from {
+        transform: translateX(100%) translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+.admin-mang-toaster-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.admin-mang-toaster-icon svg {
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+
+/* Success State */
+.admin-mang-toaster.admin-mang-success {
+    border-left: 6px solid var(--admin-mang-success);
+}
+
+.admin-mang-toaster.admin-mang-success .admin-mang-toaster-icon {
+    background-color: var(--admin-mang-light-green-bg);
+    color: var(--admin-mang-success);
+}
+
+.admin-mang-toaster.admin-mang-success .admin-mang-toast-success-icon {
+    display: block;
+}
+
+/* Error State */
+.admin-mang-toaster.admin-mang-error {
+    border-left: 6px solid var(--admin-mang-error);
+}
+
+.admin-mang-toaster.admin-mang-error .admin-mang-toaster-icon {
+    background-color: var(--admin-mang-light-red-bg);
+    color: var(--admin-mang-error);
+}
+
+.admin-mang-toaster.admin-mang-error .admin-mang-toast-error-icon {
+    display: block;
+}
+
+/* Warning State */
+.admin-mang-toaster.admin-mang-warning {
+    border-left: 6px solid var(--admin-mang-warning);
+}
+
+.admin-mang-toaster.admin-mang-warning .admin-mang-toaster-icon {
+    background-color: var(--admin-mang-light-yellow-bg);
+    color: var(--admin-mang-warning);
+}
+
+.admin-mang-toaster.admin-mang-warning .admin-mang-toast-warning-icon {
+    display: block;
+}
+
+.admin-mang-toaster-content {
+    flex: 1;
+}
+
+.admin-mang-toaster-message {
+    color: var(--admin-mang-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.admin-mang-toaster-close {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: var(--admin-mang-grey-light-text);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: all 0.2s;
+}
+
+.admin-mang-toaster-close:hover {
+    color: var(--admin-mang-primary);
+    transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+    .admin-mang-toaster {
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        min-width: calc(100% - 40px);
+        max-width: calc(100% - 40px);
+    }
+}

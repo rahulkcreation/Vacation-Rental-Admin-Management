@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+
+:root {
+    /* Typography */
+    --admin-mang-font: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Primary colors */
+    --admin-mang-primary: #F15E74;
+    --admin-mang-secondary: #2C3E50;
+    --admin-mang-accent: #2563eb;
+    --admin-mang-bg: #FAFAFA;
+    --admin-mang-text: #000000;
+
+    /* Status colors */
+    --admin-mang-success: #16a34a;
+    --admin-mang-success-hover: #15803d;
+    --admin-mang-warning: #f59e0b;
+    --admin-mang-error: #ea0124;
+    --admin-mang-error-hover: #fca5a5;
+
+    /* UI colors */
+    --admin-mang-white: #ffffff;
+    --admin-mang-card-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    --admin-mang-border-light: #e9eef3;
+    --admin-mang-border-default: #e2e8f0;
+    --admin-mang-grey-light-text: #5a6e7c;
+    --admin-mang-overlay-bg: rgba(0, 0, 0, 0.55);
+
+    /* Light BGS */
+    --admin-mang-light-yellow-bg: #fff2dc;
+    --admin-mang-light-red-bg: #ffe6ea;
+    --admin-mang-light-green-bg: #d5ffe5;
+}
+
+/* ============================================
+ * Global UI Overrides
+ * ============================================ */
+
+/* Remove default browser/WordPress outline and focus shadow centrally */
+*:focus,
+*:focus-visible,
+*:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Reset WordPress default paragraph margin */
+p {
+    margin: 0;
+}
