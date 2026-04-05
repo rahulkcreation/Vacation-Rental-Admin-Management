@@ -1,6 +1,7 @@
 <?php
 /**
  * Page Management Template
+ * Modern UI with Tabbed Navigation
  */
 
 if (!defined('ABSPATH')) {
@@ -31,101 +32,97 @@ $all_pages = get_pages();
 $saved_raw = admin_mang_get_all_entries();
 $saved_entries = array();
 foreach ($saved_raw as $entry) {
-    $saved_entries[$entry['name']] = array(
-        'page_id' => $entry['page_id'],
-        'value'   => $entry['value']
-    );
+    if (isset($entry['name'])) {
+        $saved_entries[$entry['name']] = array(
+            'page_id' => $entry['page_id'],
+            'value'   => $entry['value']
+        );
+    }
 }
 ?>
 
-<div class="admin-mang-container" id="admin-mang-page-management">
-    <header class="admin-mang-header">
-        <div class="admin-mang-header-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                <path d="M2 17l10 5 10-5"></path>
-                <path d="M2 12l10 5 10-5"></path>
-            </svg>
-        </div>
-        <div class="admin-mang-header-content">
-            <h1 class="admin-mang-header-title">Page Management</h1>
-            <p class="admin-mang-header-subtitle">Map the core features to specific pages or URL values for redirection.</p>
-        </div>
+<div class="am-pm-container" id="admin-mang-page-management">
+    <!-- Main Heading -->
+    <header class="am-pm-header">
+        <h1 class="am-pm-title">Dashboard Settings</h1>
     </header>
 
-    <div class="admin-mang-card admin-mang-form-card">
-        <div class="admin-mang-card-header">
-            <h2 class="admin-mang-card-title">Setup Mappings</h2>
-            <div class="admin-mang-card-meta">
-                <span class="admin-mang-badge-info">Active Configuration</span>
-            </div>
-        </div>
+    <!-- Card Wrapper -->
+    <div class="am-pm-dashboard-card">
+        <!-- Tabs Navigation -->
+        <nav class="am-pm-tabs">
+            <button type="button" class="am-pm-tab-btn active" data-tab="mappings">Page Mappings</button>
+            <button type="button" class="am-pm-tab-btn" data-tab="general">General</button>
+        </nav>
 
-        <div class="admin-mang-card-body">
-            <form id="admin-mang-pages-form" class="admin-mang-pages-form">
-                <div class="admin-mang-form-grid">
+        <form id="admin-mang-pages-form" class="am-pm-form">
+            <!-- Tab 1: Mappings -->
+            <div id="am-pm-tab-mappings" class="am-pm-tab-content active">
+                <div class="am-pm-form-grid">
                     <?php foreach ($admin_mang_default_entries as $entry) : 
+                        if ($entry['type'] !== 'page') continue;
                         $name = $entry['name'];
                         $saved_page_id = isset($saved_entries[$name]) ? $saved_entries[$name]['page_id'] : '';
-                        $saved_value = isset($saved_entries[$name]) ? $saved_entries[$name]['value'] : '';
                     ?>
-                        <div class="admin-mang-form-row" data-name="<?php echo esc_attr($name); ?>" data-type="<?php echo esc_attr($entry['type']); ?>">
-                            <div class="admin-mang-field-label">
-                                <label><?php echo esc_html($name); ?></label>
-                                <span class="admin-mang-field-hint">Fixed Label</span>
+                        <div class="am-pm-form-row" data-name="<?php echo esc_attr($name); ?>" data-type="page">
+                            <label><?php echo esc_html($name); ?></label>
+                            
+                            <div class="am-pm-field-wrapper">
+                                <select name="page_id" class="am-pm-select">
+                                    <option value="">-- Select Page --</option>
+                                    <?php foreach ($all_pages as $page) : ?>
+                                        <option value="<?php echo esc_attr($page->ID); ?>" <?php selected($saved_page_id, $page->ID); ?>>
+                                            <?php echo esc_html($page->post_title); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <input type="hidden" name="value" value="">
                             </div>
 
-                            <div class="admin-mang-field-input-wrapper">
-                                <?php if ($entry['type'] === 'page') : ?>
-                                    <select name="page_id" class="admin-mang-select">
-                                        <option value="">-- Select Page --</option>
-                                        <?php foreach ($all_pages as $page) : ?>
-                                            <option value="<?php echo esc_attr($page->ID); ?>" <?php selected($saved_page_id, $page->ID); ?>>
-                                                <?php echo esc_html($page->post_title); ?> (ID: <?php echo $page->ID; ?>)
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <input type="hidden" name="value" value="">
-                                <?php else : ?>
-                                    <input type="text" 
-                                           name="value" 
-                                           class="admin-mang-input" 
-                                           placeholder="e.g. /wp-login.php?action=logout" 
-                                           value="<?php echo esc_attr($saved_value); ?>">
-                                    <input type="hidden" name="page_id" value="">
-                                <?php endif; ?>
-                            </div>
-
-                            <div class="admin-mang-status-indicator">
-                                <?php if (isset($saved_entries[$name])) : ?>
-                                    <span class="admin-mang-dot admin-mang-dot-synced" title="Synced with Database"></span>
-                                <?php else : ?>
-                                    <span class="admin-mang-dot admin-mang-dot-new" title="Not saved yet"></span>
-                                <?php endif; ?>
+                            <div class="am-pm-status">
+                                <span class="am-pm-dot <?php echo isset($saved_entries[$name]) ? 'status-synced' : 'status-new'; ?>" title="Database Status"></span>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
+            </div>
 
-                <div class="admin-mang-form-footer">
-                    <div class="admin-mang-footer-info">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="16" x2="12" y2="12"></line>
-                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                        </svg>
-                        <span>All mappings are global and will affect site-wide redirections.</span>
-                    </div>
-                    <button type="submit" id="admin-mang-submit-pages" class="admin-mang-btn admin-mang-btn-primary">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                            <polyline points="7 3 7 8 15 8"></polyline>
-                        </svg>
-                        Save All Changes
-                    </button>
+            <!-- Tab 2: General -->
+            <div id="am-pm-tab-general" class="am-pm-tab-content">
+                <div class="am-pm-form-grid">
+                    <?php foreach ($admin_mang_default_entries as $entry) : 
+                        if ($entry['type'] !== 'value') continue;
+                        $name = $entry['name'];
+                        $saved_value = isset($saved_entries[$name]) ? $saved_entries[$name]['value'] : '';
+                    ?>
+                        <div class="am-pm-form-row" data-name="<?php echo esc_attr($name); ?>" data-type="value">
+                            <label for="am-pm-input-logout"><?php echo esc_html($name); ?></label>
+                            
+                            <div class="am-pm-field-wrapper">
+                                <input type="text" 
+                                       id="am-pm-input-logout"
+                                       name="value" 
+                                       class="am-pm-input" 
+                                       placeholder="e.g. /wp-login.php?action=logout" 
+                                       value="<?php echo esc_attr($saved_value); ?>">
+                                <input type="hidden" name="page_id" value="">
+                            </div>
+
+                            <div class="am-pm-status">
+                                <span class="am-pm-dot <?php echo isset($saved_entries[$name]) ? 'status-synced' : 'status-new'; ?>" title="Database Status"></span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <!-- Action Area -->
+            <div class="am-pm-footer">
+                <button type="submit" id="admin-mang-submit-pages" class="am-pm-save-btn">
+                    <span class="btn-text">Save Changes</span>
+                    <span class="btn-loader"></span>
+                </button>
+            </div>
+        </form>
     </div>
 </div>

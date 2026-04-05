@@ -3,7 +3,7 @@
  * Plugin Name: Admin Management
  * Plugin URI: https://arttechfuzion.com
  * Description: A comprehensive admin management system for managing pages, settings, and database operations.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Art-Tech Fuzion
  * Text Domain: admin-management
  * 
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 /**
  * Define constants
  */
-define('ADMIN_MANG_VERSION', '1.0.0');
+define('ADMIN_MANG_VERSION', '1.1.0');
 define('ADMIN_MANG_PATH', plugin_dir_path(__FILE__));
 define('ADMIN_MANG_URL', plugin_dir_url(__FILE__));
 
@@ -96,16 +96,16 @@ class Admin_Mang_Plugin {
      * Page Management Screen
      */
     public function admin_mang_page_management_screen() {
-        include ADMIN_MANG_PATH . 'templates/backend/admin-management.php';
-        include ADMIN_MANG_PATH . 'templates/backend/toaster.php';
+        include ADMIN_MANG_PATH . 'templates/admin-management.php';
+        include ADMIN_MANG_PATH . 'templates/toaster.php';
     }
 
     /**
      * Database Management Screen
      */
     public function admin_mang_database_screen() {
-        include ADMIN_MANG_PATH . 'templates/backend/database.php';
-        include ADMIN_MANG_PATH . 'templates/backend/toaster.php';
+        include ADMIN_MANG_PATH . 'templates/database.php';
+        include ADMIN_MANG_PATH . 'templates/toaster.php';
     }
 }
 

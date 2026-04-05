@@ -24,20 +24,19 @@ function admin_mang_load_assets($hook) {
     }
 
     // 1. Load Design Tokens (Main Global CSS)
-    /* This file contains all the CSS variables and is the source of truth for colors */
     wp_enqueue_style(
         'admin-mang-design-tokens',
-        ADMIN_MANG_URL . 'includes/assets/global.css',
+        ADMIN_MANG_URL . 'assets/global.css',
         array(),
-        filemtime(ADMIN_MANG_PATH . 'includes/assets/global.css')
+        filemtime(ADMIN_MANG_PATH . 'assets/global.css')
     );
 
     // 2. Load Global Utilities (JS)
     wp_enqueue_script(
         'admin-mang-global-utils',
-        ADMIN_MANG_URL . 'assets/backend/global-utils.js',
+        ADMIN_MANG_URL . 'assets/global-utils.js',
         array('jquery'),
-        filemtime(ADMIN_MANG_PATH . 'assets/backend/global-utils.js'),
+        filemtime(ADMIN_MANG_PATH . 'assets/global-utils.js'),
         true
     );
 
@@ -50,16 +49,16 @@ function admin_mang_load_assets($hook) {
     // 3. Load Toaster Assets
     wp_enqueue_style(
         'admin-mang-toaster-style',
-        ADMIN_MANG_URL . 'assets/backend/toaster.css',
+        ADMIN_MANG_URL . 'assets/toaster.css',
         array('admin-mang-design-tokens'),
-        filemtime(ADMIN_MANG_PATH . 'assets/backend/toaster.css')
+        filemtime(ADMIN_MANG_PATH . 'assets/toaster.css')
     );
 
     wp_enqueue_script(
         'admin-mang-toaster-script',
-        ADMIN_MANG_URL . 'assets/backend/toaster.js',
+        ADMIN_MANG_URL . 'assets/toaster.js',
         array('jquery', 'admin-mang-global-utils'),
-        filemtime(ADMIN_MANG_PATH . 'assets/backend/toaster.js'),
+        filemtime(ADMIN_MANG_PATH . 'assets/toaster.js'),
         true
     );
 
@@ -68,32 +67,32 @@ function admin_mang_load_assets($hook) {
         // Page Management Screen
         wp_enqueue_style(
             'admin-mang-page-management-style',
-            ADMIN_MANG_URL . 'assets/backend/admin-management.css',
+            ADMIN_MANG_URL . 'assets/admin-management.css',
             array('admin-mang-design-tokens', 'admin-mang-toaster-style'),
-            filemtime(ADMIN_MANG_PATH . 'assets/backend/admin-management.css')
+            filemtime(ADMIN_MANG_PATH . 'assets/admin-management.css')
         );
 
         wp_enqueue_script(
             'admin-mang-page-management-script',
-            ADMIN_MANG_URL . 'assets/backend/admin-management.js',
+            ADMIN_MANG_URL . 'assets/admin-management.js',
             array('jquery', 'admin-mang-global-utils', 'admin-mang-toaster-script'),
-            filemtime(ADMIN_MANG_PATH . 'assets/backend/admin-management.js'),
+            filemtime(ADMIN_MANG_PATH . 'assets/admin-management.js'),
             true
         );
     } elseif ($hook === 'admin-management_page_admin-mang-database') {
         // Database Management Screen
         wp_enqueue_style(
             'admin-mang-database-style',
-            ADMIN_MANG_URL . 'assets/backend/database.css',
+            ADMIN_MANG_URL . 'assets/database.css',
             array('admin-mang-design-tokens', 'admin-mang-toaster-style'),
-            filemtime(ADMIN_MANG_PATH . 'assets/backend/database.css')
+            filemtime(ADMIN_MANG_PATH . 'assets/database.css')
         );
 
         wp_enqueue_script(
             'admin-mang-database-script',
-            ADMIN_MANG_URL . 'assets/backend/database.js',
+            ADMIN_MANG_URL . 'assets/database.js',
             array('jquery', 'admin-mang-global-utils', 'admin-mang-toaster-script'),
-            filemtime(ADMIN_MANG_PATH . 'assets/backend/database.js'),
+            filemtime(ADMIN_MANG_PATH . 'assets/database.js'),
             true
         );
     }
