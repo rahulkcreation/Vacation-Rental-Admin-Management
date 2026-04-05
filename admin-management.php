@@ -17,7 +17,6 @@ if (!defined('ABSPATH')) {
 /**
  * Define constants
  */
-define('ADMIN_MANG_VERSION', '1.1.0');
 define('ADMIN_MANG_PATH', plugin_dir_path(__FILE__));
 define('ADMIN_MANG_URL', plugin_dir_url(__FILE__));
 
