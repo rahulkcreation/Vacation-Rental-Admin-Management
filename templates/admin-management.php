@@ -9,17 +9,9 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Pre-defined Entries Configuration
+ * Configuration from Database Schema
  */
-$admin_mang_default_entries = array(
-    array('id' => 1, 'name' => 'My Profile', 'type' => 'page'),
-    array('id' => 2, 'name' => 'User Booking', 'type' => 'page'),
-    array('id' => 3, 'name' => 'Add New Listing', 'type' => 'page'),
-    array('id' => 4, 'name' => 'Host Listings', 'type' => 'page'),
-    array('id' => 5, 'name' => 'Listing Archive', 'type' => 'page'),
-    array('id' => 6, 'name' => 'Listing Single View', 'type' => 'page'),
-    array('id' => 7, 'name' => 'Logout', 'type' => 'value'),
-);
+$admin_mang_default_entries = admin_mang_get_default_schema();
 
 /**
  * Get all WordPress pages

@@ -3,7 +3,7 @@
  * Plugin Name: Admin Management
  * Plugin URI: https://arttechfuzion.com
  * Description: A comprehensive admin management system for managing pages, settings, and database operations.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Art-Tech Fuzion
  * Text Domain: admin-management
  * 

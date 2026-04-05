@@ -8,6 +8,22 @@ if (!defined('ABSPATH')) {
 }
 
 /**
+ * Default Schema Configuration
+ * Used for UI display and initial DB population.
+ */
+function admin_mang_get_default_schema() {
+    return array(
+        array('name' => 'My Profile',           'type' => 'page'),
+        array('name' => 'User Booking',        'type' => 'page'),
+        array('name' => 'Add New Listing',     'type' => 'page'),
+        array('name' => 'Host Listings',       'type' => 'page'),
+        array('name' => 'Listing Archive',     'type' => 'page'),
+        array('name' => 'Listing Single View', 'type' => 'page'),
+        array('name' => 'Logout',              'type' => 'value'),
+    );
+}
+
+/**
  * Create custom table for admin management
  */
 function admin_mang_create_tables() {
@@ -28,6 +44,29 @@ function admin_mang_create_tables() {
 
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta($sql);
+
+    // Initial population of default entries if missing
+    $defaults = admin_mang_get_default_schema();
+    foreach ($defaults as $entry) {
+        $exists = $wpdb->get_var($wpdb->prepare(
+            "SELECT COUNT(*) FROM $table_name WHERE name = %s",
+            $entry['name']
+        ));
+
+        if (!$exists) {
+            $wpdb->insert(
+                $table_name,
+                array(
+                    'name' => $entry['name'],
+                    'page_id' => null,
+                    'value' => null,
+                    'created_at' => current_time('mysql'),
+                    'updated_at' => current_time('mysql')
+                ),
+                array('%s', '%s', '%s', '%s', '%s')
+            );
+        }
+    }
 }
 
 /**
