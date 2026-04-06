@@ -87,15 +87,19 @@ foreach ($saved_raw as $entry) {
                         $name = $entry['name'];
                         $saved_value = isset($saved_entries[$name]) ? $saved_entries[$name]['value'] : '';
                     ?>
+                        <?php 
+                            $slug = strtolower(str_replace(' ', '-', $name));
+                            $placeholder = ($name === 'Logout') ? 'e.g. /wp-login.php?action=logout' : 'e.g. /wp-login.php';
+                        ?>
                         <div class="am-pm-form-row" data-name="<?php echo esc_attr($name); ?>" data-type="value">
-                            <label for="am-pm-input-logout"><?php echo esc_html($name); ?></label>
+                            <label for="am-pm-input-<?php echo esc_attr($slug); ?>"><?php echo esc_html($name); ?></label>
                             
                             <div class="am-pm-field-wrapper">
                                 <input type="text" 
-                                       id="am-pm-input-logout"
+                                       id="am-pm-input-<?php echo esc_attr($slug); ?>"
                                        name="value" 
                                        class="am-pm-input" 
-                                       placeholder="e.g. /wp-login.php?action=logout" 
+                                       placeholder="<?php echo esc_attr($placeholder); ?>" 
                                        value="<?php echo esc_attr($saved_value); ?>">
                                 <input type="hidden" name="page_id" value="">
                             </div>

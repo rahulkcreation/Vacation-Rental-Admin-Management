@@ -20,6 +20,7 @@ function admin_mang_get_default_schema() {
         array('name' => 'Listing Archive',     'type' => 'page'),
         array('name' => 'Listing Single View', 'type' => 'page'),
         array('name' => 'Logout',              'type' => 'value'),
+        array('name' => 'Login',               'type' => 'value'),
     );
 }
 
