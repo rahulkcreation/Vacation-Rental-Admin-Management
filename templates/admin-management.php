@@ -54,10 +54,11 @@ foreach ($saved_raw as $entry) {
                     <?php foreach ($admin_mang_default_entries as $entry) : 
                         if ($entry['type'] !== 'page') continue;
                         $name = $entry['name'];
+                        $label = isset($entry['label']) ? $entry['label'] : $name;
                         $saved_page_id = isset($saved_entries[$name]) ? $saved_entries[$name]['page_id'] : '';
                     ?>
                         <div class="am-pm-form-row" data-name="<?php echo esc_attr($name); ?>" data-type="page">
-                            <label><?php echo esc_html($name); ?></label>
+                            <label><?php echo esc_html($label); ?></label>
                             
                             <div class="am-pm-field-wrapper">
                                 <select name="page_id" class="am-pm-select">
@@ -85,6 +86,7 @@ foreach ($saved_raw as $entry) {
                     <?php foreach ($admin_mang_default_entries as $entry) : 
                         if ($entry['type'] !== 'value') continue;
                         $name = $entry['name'];
+                        $label = isset($entry['label']) ? $entry['label'] : $name;
                         $saved_value = isset($saved_entries[$name]) ? $saved_entries[$name]['value'] : '';
                     ?>
                         <?php 
@@ -92,7 +94,7 @@ foreach ($saved_raw as $entry) {
                             $placeholder = ($name === 'Logout') ? 'e.g. /wp-login.php?action=logout' : 'e.g. /wp-login.php';
                         ?>
                         <div class="am-pm-form-row" data-name="<?php echo esc_attr($name); ?>" data-type="value">
-                            <label for="am-pm-input-<?php echo esc_attr($slug); ?>"><?php echo esc_html($name); ?></label>
+                            <label for="am-pm-input-<?php echo esc_attr($slug); ?>"><?php echo esc_html($label); ?></label>
                             
                             <div class="am-pm-field-wrapper">
                                 <input type="text" 
