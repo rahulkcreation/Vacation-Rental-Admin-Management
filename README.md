@@ -1,4 +1,4 @@
-# Admin Management WordPress Plugin
+# Admin Management - Vacation Rental WordPress Website Plugin
 
 A professional, modular WordPress administration plugin for managing system pages, settings mappings, and core configuration values in a unified custom database schema.
 
